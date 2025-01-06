@@ -122,7 +122,9 @@ func ConstrainedDelaunay(pts [][2]float64, segs [][2]int32,
 	in.SetPointMarkers(make([]int32, len(pts)))
 	in.SetSegments(segs)
 	in.SetSegmentMarkers(make([]int32, len(segs)))
-	in.SetHoles(holes)
+	if len(holes) > 0 {
+		in.SetHoles(holes)
+	}
 	triang("Qzp", in, out, nil)
 
 	verts := out.Points()
@@ -145,7 +147,9 @@ func ConformingDelaunay(pts [][2]float64, segs [][2]int32,
 	in.SetPointMarkers(make([]int32, len(pts)))
 	in.SetSegments(segs)
 	in.SetSegmentMarkers(make([]int32, len(segs)))
-	in.SetHoles(holes)
+	if len(holes) > 0 {
+		in.SetHoles(holes)
+	}
 	triang("QzpD", in, out, nil)
 
 	verts := out.Points()
